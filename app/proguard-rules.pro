@@ -4,5 +4,3 @@
 # Keep all XposedModule subclasses and their members
 -keep class * extends io.github.libxposed.api.XposedModule { *; }
 
-# Keep DexKit (relies on native JNI bindings)
--keep class org.luckypray.dexkit.** { *; }

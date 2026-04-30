@@ -1,22 +1,25 @@
+import com.android.build.gradle.tasks.PackageAndroidArtifact
+
 plugins {
     alias(libs.plugins.android.application)
 }
 
 android {
     namespace = "com.example.mitsuha"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
 
     defaultConfig {
         applicationId = "com.example.mitsuha"
+        compileSdk = 37
         minSdk = 33
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
+
+        ndk {
+            abiFilters.add("arm64-v8a")
+        }
     }
+
 
     buildTypes {
         release {
@@ -26,12 +29,27 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            vcsInfo.include = false
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
+
+    packaging {
+        resources {
+            merges += "META-INF/xposed/*"
+            excludes += "**"
+        }
+    }
+}
+
+// https://stackoverflow.com/a/77745844
+tasks.withType<PackageAndroidArtifact> {
+    doFirst { appMetadata.asFile.orNull?.writeText("") }
 }
 
 dependencies {
