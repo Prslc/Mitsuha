@@ -18,7 +18,7 @@ It quietly tweaks system behavior to give you a smoother, cleaner experience wit
 ## Features
 
 - **Block system OTA updates** – intercepts update checks and prevents the annoying “update available” reminder.
-- **Predictive back gesture progress** – replaces the default back animation progress curve with AOSP's two-phase (linear + lerp) mapping for a more natural feel.
+- **Fix predictive back gesture progress** – HyperOS's back animation progress curve is broken; replaces it with AOSP's two-phase (linear + lerp) mapping.
 - **Safety‑detector bypass** – dynamically patches the task dispatch field in MiSafetyDetectService, preventing unwanted restrictions.
 
 ## Credit
