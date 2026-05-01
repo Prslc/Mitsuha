@@ -1,5 +1,6 @@
 package com.prslc.mitsuha
 
+import com.prslc.mitsuha.handler.BuildHandler
 import com.prslc.mitsuha.handler.MiSafetyHandler
 import com.prslc.mitsuha.handler.PredictiveBackHandler
 import com.prslc.mitsuha.handler.UpdaterHandler
@@ -26,6 +27,9 @@ class MainHook : XposedModule() {
         super.onPackageReady(param)
 
         when (param.packageName) {
+            "android" -> {
+                BuildHandler(this).onHook(param.classLoader)
+            }
             "com.android.updater" -> {
                 UpdaterHandler(this).onHook(param.classLoader)
             }
