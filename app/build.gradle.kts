@@ -7,6 +7,8 @@ plugins {
 android {
     namespace = "com.prslc.mitsuha"
 
+    buildFeatures { buildConfig = true }
+
     defaultConfig {
         applicationId = "com.prslc.mitsuha"
         compileSdk = 37

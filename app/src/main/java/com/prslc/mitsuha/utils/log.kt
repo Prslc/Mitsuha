@@ -1,6 +1,7 @@
 package com.prslc.mitsuha.utils
 
 import android.util.Log
+import com.prslc.mitsuha.BuildConfig
 import io.github.libxposed.api.XposedInterface
 
 var logPrefix: String = ""
@@ -13,8 +14,10 @@ private fun xposedLog(priority: Int, msg: String, t: Throwable? = null) {
 }
 
 fun logD(msg: String, t: Throwable? = null) {
-    Log.d(LOG_TAG, "$logPrefix$msg", t)
-    xposedLog(Log.DEBUG, msg, t)
+    if (BuildConfig.DEBUG) {
+        Log.d(LOG_TAG, "$logPrefix$msg", t)
+        xposedLog(Log.DEBUG, msg, t)
+    }
 }
 
 fun logE(msg: String, t: Throwable? = null) {
