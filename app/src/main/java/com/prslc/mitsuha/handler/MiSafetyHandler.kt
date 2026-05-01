@@ -1,8 +1,8 @@
-package com.example.mitsuha.handler
+package com.prslc.mitsuha.handler
 
-import com.example.mitsuha.resolver.MiSafetyResolver
-import com.example.mitsuha.utils.logE
-import com.example.mitsuha.utils.logI
+import com.prslc.mitsuha.resolver.MiSafetyResolver
+import com.prslc.mitsuha.utils.logE
+import com.prslc.mitsuha.utils.logI
 import io.github.libxposed.api.XposedInterface
 import org.luckypray.dexkit.DexKitBridge
 import java.lang.reflect.Field

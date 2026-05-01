@@ -1,10 +1,10 @@
-package com.example.mitsuha
+package com.prslc.mitsuha
 
-import com.example.mitsuha.handler.MiSafetyHandler
-import com.example.mitsuha.handler.PredictiveBackHandler
-import com.example.mitsuha.handler.UpdaterHandler
-import com.example.mitsuha.resolver.MiSafetyResolver
-import com.example.mitsuha.utils.logE
+import com.prslc.mitsuha.handler.MiSafetyHandler
+import com.prslc.mitsuha.handler.PredictiveBackHandler
+import com.prslc.mitsuha.handler.UpdaterHandler
+import com.prslc.mitsuha.resolver.MiSafetyResolver
+import com.prslc.mitsuha.utils.logE
 import io.github.libxposed.api.XposedModule
 import io.github.libxposed.api.XposedModuleInterface.PackageReadyParam
 import org.luckypray.dexkit.DexKitBridge

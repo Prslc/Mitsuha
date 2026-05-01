@@ -1,4 +1,4 @@
-package com.example.mitsuha.utils
+package com.prslc.mitsuha.utils
 
 import android.util.Log
 

@@ -1,8 +1,8 @@
-package com.example.mitsuha.handler
+package com.prslc.mitsuha.handler
 
-import com.example.mitsuha.utils.logD
-import com.example.mitsuha.utils.logE
-import com.example.mitsuha.utils.logI
+import com.prslc.mitsuha.utils.logD
+import com.prslc.mitsuha.utils.logE
+import com.prslc.mitsuha.utils.logI
 import io.github.libxposed.api.XposedInterface
 import org.json.JSONObject
 import java.lang.reflect.Executable

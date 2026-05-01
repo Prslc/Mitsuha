@@ -4,11 +4,11 @@
  * @see <a href="https://github.com/HowieHChen/XiaomiHelper">Hook point inspired by XiaomiHelper</a>
  */
 
-package com.example.mitsuha.handler
+package com.prslc.mitsuha.handler
 
 import android.content.res.Resources.getSystem
-import com.example.mitsuha.utils.logE
-import com.example.mitsuha.utils.logI
+import com.prslc.mitsuha.utils.logE
+import com.prslc.mitsuha.utils.logI
 import io.github.libxposed.api.XposedInterface
 import io.github.libxposed.api.XposedInterface.ExceptionMode
 import kotlin.math.abs

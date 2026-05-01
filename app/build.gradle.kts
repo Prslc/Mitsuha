@@ -5,10 +5,10 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mitsuha"
+    namespace = "com.prslc.mitsuha"
 
     defaultConfig {
-        applicationId = "com.example.mitsuha"
+        applicationId = "com.prslc.mitsuha"
         compileSdk = 37
         minSdk = 33
         targetSdk = 36

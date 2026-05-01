@@ -1,4 +1,4 @@
-package com.example.mitsuha.resolver
+package com.prslc.mitsuha.resolver
 
 import org.luckypray.dexkit.DexKitBridge
 
