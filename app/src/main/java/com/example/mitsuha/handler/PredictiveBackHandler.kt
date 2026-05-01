@@ -1,3 +1,9 @@
+/**
+ * Predicts and standardizes back gesture progress.
+ * 
+ * @see <a href="https://github.com/HowieHChen/XiaomiHelper">Hook point inspired by XiaomiHelper</a>
+ */
+
 package com.example.mitsuha.handler
 
 import android.content.res.Resources.getSystem

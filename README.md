@@ -25,4 +25,4 @@ It quietly tweaks system behavior to give you a smoother, cleaner experience wit
 
 - **[LSPosed](https://github.com/LSPosed/LSPosed)** – The modern Xposed framework that makes this module possible.
 - **[DexKit](https://github.com/LuckyPray/DexKit)** – High‑performance dex query engine used to locate obfuscated methods and fields at runtime.
-- **[Hyper Helper](https://github.com/HowieHChen/XiaomiHelper)** – Predictive back gesture implementation was adapted from this project.
+- **[Hyper Helper](https://github.com/HowieHChen/XiaomiHelper)** – Inspiration and reference for identifying predictive back gesture hook points.
