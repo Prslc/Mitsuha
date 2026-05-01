@@ -1,7 +1,10 @@
 /**
  * Predicts and standardizes back gesture progress.
  * 
- * @see <a href="https://github.com/HowieHChen/XiaomiHelper">Hook point inspired by XiaomiHelper</a>
+ * This handler implements AOSP-style two-phase progress logic, referencing
+ * hook points from XiaomiHelper.
+ *
+ * @see <a href="https://github.com/HowieHChen/XiaomiHelper">XiaomiHelper (GPL v3)</a>
  */
 
 package com.prslc.mitsuha.handler
