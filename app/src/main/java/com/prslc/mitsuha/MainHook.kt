@@ -7,7 +7,9 @@ import com.prslc.mitsuha.handler.UpdaterHandler
 import com.prslc.mitsuha.resolver.MiSafetyResolver
 import com.prslc.mitsuha.utils.logE
 import io.github.libxposed.api.XposedModule
+import io.github.libxposed.api.XposedModuleInterface
 import io.github.libxposed.api.XposedModuleInterface.PackageReadyParam
+import io.github.libxposed.api.XposedModuleInterface.SystemServerStartingParam
 import org.luckypray.dexkit.DexKitBridge
 
 class MainHook : XposedModule() {
@@ -23,13 +25,17 @@ class MainHook : XposedModule() {
         }
     }
 
+    // System framework hooks need use onSystemServerStarting instead of onPackageReady.
+    // This callback fires once when system_server boots and provides the correct classloader.
+    override fun onSystemServerStarting(param: SystemServerStartingParam) {
+        super.onSystemServerStarting(param)
+        BuildHandler(this).onHook(param.classLoader)
+    }
+
     override fun onPackageReady(param: PackageReadyParam) {
         super.onPackageReady(param)
 
         when (param.packageName) {
-            "android" -> {
-                BuildHandler(this).onHook(param.classLoader)
-            }
             "com.android.updater" -> {
                 UpdaterHandler(this).onHook(param.classLoader)
             }
