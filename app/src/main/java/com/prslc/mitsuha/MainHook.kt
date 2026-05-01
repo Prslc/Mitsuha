@@ -6,9 +6,10 @@ import com.prslc.mitsuha.handler.PredictiveBackHandler
 import com.prslc.mitsuha.handler.UpdaterHandler
 import com.prslc.mitsuha.resolver.MiSafetyResolver
 import com.prslc.mitsuha.utils.logE
+import com.prslc.mitsuha.utils.xposedLog
 import io.github.libxposed.api.XposedModule
-import io.github.libxposed.api.XposedModuleInterface
 import io.github.libxposed.api.XposedModuleInterface.PackageReadyParam
+import io.github.libxposed.api.XposedModuleInterface.ModuleLoadedParam
 import io.github.libxposed.api.XposedModuleInterface.SystemServerStartingParam
 import org.luckypray.dexkit.DexKitBridge
 
@@ -23,6 +24,12 @@ class MainHook : XposedModule() {
                 logE("Failed to load DexKit native library", e)
             }
         }
+    }
+
+    // Set global XposedInterface reference early, once per process.
+    override fun onModuleLoaded(param: ModuleLoadedParam) {
+        super.onModuleLoaded(param)
+        xposedLog = this
     }
 
     // System framework hooks need use onSystemServerStarting instead of onPackageReady.
