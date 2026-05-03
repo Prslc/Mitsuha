@@ -57,7 +57,6 @@ class PredictiveBackHandler(private val base: XposedInterface) {
                     val deltaX = abs(mCurrX - mDownX)
                     val progress = getProgress(deltaX)
 
-                    // Inject custom progress into the 3rd argument (index 2)
                     args[2] = progress
                 } catch (_: Throwable) {
                     // Fail-safe: proceed with original args on error

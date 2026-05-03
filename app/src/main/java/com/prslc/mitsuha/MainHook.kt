@@ -4,6 +4,7 @@ import com.prslc.mitsuha.handler.BuildHandler
 import com.prslc.mitsuha.handler.MiSafetyHandler
 import com.prslc.mitsuha.handler.PredictiveBackHandler
 import com.prslc.mitsuha.handler.UpdaterHandler
+import com.prslc.mitsuha.handler.XlDownloadHandler
 import com.prslc.mitsuha.resolver.MiSafetyResolver
 import com.prslc.mitsuha.utils.logE
 import com.prslc.mitsuha.utils.xposedLog
@@ -48,6 +49,9 @@ class MainHook : XposedModule() {
             }
             "com.miui.home" -> {
                 PredictiveBackHandler(this).onHook(param.classLoader)
+            }
+            "com.android.providers.downloads" -> {
+                XlDownloadHandler(this).onHook(param.classLoader)
             }
             "com.miui.securitycenter" -> {
                 val apkPath = param.applicationInfo.sourceDir

@@ -21,10 +21,12 @@ It quietly tweaks system behavior to give you a smoother, cleaner experience wit
 - **Fix predictive back gesture progress** – HyperOS's back animation progress curve is broken; replaces it with AOSP's two-phase (linear + lerp) mapping.
 - **Safety‑detector bypass** – dynamically patches the task dispatch field in MiSafetyDetectService, preventing unwanted restrictions.
 - **System Integrity** – Bypasses `isBuildConsistent` checks to prevent system warnings or "corrupted" alerts caused by unlocked bootloaders or partition modifications.
+- **Remove .xlDownload directory** – prevents the Xunlei download engine from creating the hidden `.xlDownload` folder on sdcard.
 
 ## Credit
 
 - **[LSPosed](https://github.com/LSPosed/LSPosed)** – The modern Xposed framework that makes this module possible.
 - **[DexKit](https://github.com/LuckyPray/DexKit)** – High‑performance dex query engine used to locate obfuscated methods and fields at runtime.
 - **[Hyper Helper](https://github.com/HowieHChen/XiaomiHelper)** – Inspiration and reference for identifying predictive back gesture hook points.
-- **[StopVintf](https://github.com/AlexLiuDev233/StopVintf)** - Core logic for bypassing build consistency checks
+- **[StopVintf](https://github.com/AlexLiuDev233/StopVintf)** - Core logic for bypassing build consistency checks.
+- **[WOMMO](https://github.com/YifePlayte/WOMMO)** – Original idea for blocking the .xlDownload directory creation.

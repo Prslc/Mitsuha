@@ -1,5 +1,6 @@
 package com.prslc.mitsuha.handler
 
+import android.annotation.SuppressLint
 import com.prslc.mitsuha.utils.logD
 import com.prslc.mitsuha.utils.logE
 import com.prslc.mitsuha.utils.logI
@@ -9,6 +10,7 @@ import java.lang.reflect.Executable
 
 class UpdaterHandler(private val base: XposedInterface) {
 
+    @SuppressLint("PrivateApi")
     fun onHook(loader: ClassLoader) {
         try {
             val targetClass = loader.loadClass("com.android.updater.UpdateInfo")
