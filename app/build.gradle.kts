@@ -55,6 +55,7 @@ tasks.withType<PackageAndroidArtifact> {
 }
 
 dependencies {
-    compileOnly(libs.libxposed)
+    compileOnly(libs.libxposed.api)
+    implementation(libs.libxposed.service)
     implementation(libs.dexkit)
 }
