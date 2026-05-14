@@ -13,6 +13,7 @@ android {
         applicationId = "com.prslc.mitsuha"
         compileSdk = 37
         minSdk = 33
+        //noinspection OldTargetApi
         targetSdk = 36
         versionCode = 2
         versionName = "1.2"
@@ -21,7 +22,6 @@ android {
             abiFilters.add("arm64-v8a")
         }
     }
-
 
     buildTypes {
         release {
