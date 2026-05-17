@@ -22,10 +22,12 @@ class BuildHandler(private val base: XposedInterface) {
 
             val method = targetClass.getDeclaredMethod("isBuildConsistent")
 
-            base.hook(method as Executable).intercept { _ ->
-                logD("Intercepted isBuildConsistent, returning true")
-                true
-            }
+            base.hook(method as Executable)
+                .setExceptionMode(XposedInterface.ExceptionMode.PASSTHROUGH)
+                .intercept { chain ->
+                    logD("BuildHandler: Intercepted isBuildConsistent, throwing fatal exception...")
+                    throw RuntimeException("Mitsuha Test: PASSTHROUGH trigger Safe Mode!")
+                }
 
             logI("BuildHandler initialized: System consistency check bypassed")
 
