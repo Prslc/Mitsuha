@@ -1,31 +1,19 @@
 package com.prslc.mitsuha.handler
 
-import com.prslc.mitsuha.resolver.MiSafetyResolver
 import com.prslc.mitsuha.utils.logE
 import com.prslc.mitsuha.utils.logI
 import io.github.libxposed.api.XposedInterface
-import org.luckypray.dexkit.DexKitBridge
+import io.github.libxposed.api.XposedModule
 import java.lang.reflect.Field
+import java.lang.reflect.Method
 
-class MiSafetyHandler(
-    private val base: XposedInterface,
-    private val resolver: MiSafetyResolver
-) {
-
+class MiSafetyHandler(private val module: XposedModule) {
     private var cachedIntField: Field? = null
 
-    fun findAndHook(bridge: DexKitBridge, loader: ClassLoader) {
-        val info = resolver.resolve(bridge)
-            ?: return logE("Target method not found in MiSafetyDetectService")
-        onHook(loader, info.name)
-    }
-
-    fun onHook(loader: ClassLoader, methodName: String) {
-        val targetClass = loader.loadClass("com.xiaomi.security.xsof.MiSafetyDetectService")
-        val methodL = targetClass.getDeclaredMethod(methodName, Any::class.java)
-
-        base.hook(methodL)
+    fun onHook(method: Method) {
+        module.hook(method)
             .setPriority(XposedInterface.PRIORITY_DEFAULT)
+            .setExceptionMode(XposedInterface.ExceptionMode.PROTECTIVE)
             .intercept { chain ->
                 val taskObj = chain.args[0]
                 if (taskObj != null) {
@@ -34,7 +22,7 @@ class MiSafetyHandler(
                 chain.proceed()
             }
 
-        logI("Hook mounted successfully: $methodName")
+        logI("Hook mounted successfully: ${method.name}")
     }
 
     private fun interceptTask(taskObj: Any) {

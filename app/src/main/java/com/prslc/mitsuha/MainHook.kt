@@ -6,13 +6,14 @@ import com.prslc.mitsuha.handler.PredictiveBackHandler
 import com.prslc.mitsuha.handler.UpdaterHandler
 import com.prslc.mitsuha.handler.XlDownloadHandler
 import com.prslc.mitsuha.resolver.MiSafetyResolver
+import com.prslc.mitsuha.utils.dexkit.DexKitUtils
 import com.prslc.mitsuha.utils.logE
 import com.prslc.mitsuha.utils.xposedLog
 import io.github.libxposed.api.XposedModule
-import io.github.libxposed.api.XposedModuleInterface.PackageReadyParam
 import io.github.libxposed.api.XposedModuleInterface.ModuleLoadedParam
+import io.github.libxposed.api.XposedModuleInterface.PackageReadyParam
 import io.github.libxposed.api.XposedModuleInterface.SystemServerStartingParam
-import org.luckypray.dexkit.DexKitBridge
+import org.luckypray.dexkit.annotations.DexKitExperimentalApi
 
 class MainHook : XposedModule() {
 
@@ -40,6 +41,7 @@ class MainHook : XposedModule() {
         BuildHandler(this).onHook(param.classLoader)
     }
 
+    @OptIn(DexKitExperimentalApi::class)
     override fun onPackageReady(param: PackageReadyParam) {
         super.onPackageReady(param)
 
@@ -55,15 +57,17 @@ class MainHook : XposedModule() {
             }
             "com.miui.securitycenter" -> {
                 val apkPath = param.applicationInfo.sourceDir
-                val bridge = DexKitBridge.create(apkPath)
-                try {
-                    val resolver = MiSafetyResolver()
-                    val handler = MiSafetyHandler(this, resolver)
-                    handler.findAndHook(bridge, param.classLoader)
-                } catch (e: Throwable) {
-                    logE("SecurityCenter initialization failed", e)
-                } finally {
-                    bridge.close()
+
+                val reflectMethod = DexKitUtils.resolveMethod(this, apkPath, "securitycenter") { bridge ->
+                    MiSafetyResolver().resolve(bridge)
+                }
+
+                if (reflectMethod != null) {
+                    try {
+                        MiSafetyHandler(this).onHook(reflectMethod)
+                    } catch (e: Throwable) {
+                        logE("SecurityCenter initialization failed", e)
+                    }
                 }
             }
         }
